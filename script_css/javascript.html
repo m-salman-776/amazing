@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>javascript</title>
+<script type="text/javascript">
+	var m;
+	function pick(form)
+	{
+		var z="";
+		for(var j=0;j<3;j++)
+		{
+			for(var i=0;i<form.elements[j].length;i++)
+				if(form.elements[j][i].selected)
+				{
+					var y=form.elements[j].options[i].value;
+					z=z+y+"\n";
+					form.elements[3].value=z;
+				}
+		}
+	m=z;
+	}
+	var c=0;
+	function calculate(form)
+	{
+		var d=0;
+		for(var i=0;i<3;i++)
+		{
+			for(var j=0;j<form.elements[i].length;j++)
+				if(form.elements[i][j].selected)
+				{
+					var y=new String(form.elements[i].options[j].value);
+					var pos=y.indexOf(">");
+					console.log(pos);
+					var c=parseInt(y.substring(pos+1,pos+4));
+					d+=c;
+				}
+		}
+		var p="Total cost is : "+d;
+		c=d;
+		m=m+"\n"+p;
+		console.log(d);
+		console.log(m);
+		form.elements[3].value=m;
+
+	}
+	function clr(form)
+	{
+		form.value="";
+	}
+	function get_Time(f)
+	{
+		f.value=Date();
+	}
+</script>
+</head>
+<body>
+<form>
+	<select name="mc1" multiple onblur="pick(this.form)"> 
+		<option value="majordish1->453">majordish1</option>
+		<option value="majordish2->694">majordish2</option>
+		<option value="majordish3->364">majordish3</option>
+		<option value="majordish4->784">majordish4</option>
+		<option value="majordish5->654">majordish5</option>
+		<option value="majordish6->369">majordish6</option>
+	</select>
+	<br><br><br>
+	<select name="mc2" multiple onblur="pick(this.form)"> 
+		<option value="Starter1->455">Starter1</option>
+		<option value="Starter2->334">Starter2</option>
+		<option value="Starter3->761">Starter3</option>
+		<option value="Starter4->7686">Starter4</option>
+		<option value="Starter5->342">Starter5</option>
+		<option value="Starter6->5345">Starter6</option>
+	</select>
+	<br><br><br>
+	<select name="sc1" onblur="pick(this.form)">
+		<option value="">'Check this'</option>
+		<option value="Milkshake->156">Milkshake</option>
+		<OPTION value="Soft drink->232">Soft drink</OPTION>
+		<option value="Softy->435">Softy</option>
+	</select>
+	<br><br><br>
+	<textarea name="output" rows="12" cols="15"></textarea>
+	<br><br><br>
+	<button onclick="calculate(this)">Total Cost</button>
+	<button onclick="clr(this)">Clear</button>
+</form>
+<input type="text" name="time" onfocus="get_Time(this)" onblur="clr(this)">
+</body>
+</html>

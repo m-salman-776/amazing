@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ajax</title>
+<script type="text/javascript">
+	function load()
+	{
+		alert("called load");
+		var request=new XMLHttpRequest();
+		request.onload=function(){
+			console.log(this.readyState, this.status);
+			if(this.readyState==4 && this.status==200)
+			{
+				document.getElementById("data").innerHTML=this.responseXML;
+				alert("Got the data");
+			}
+		};
+		request.open("get","./nutrition.xml");
+		request.send();
+	}
+</script>
+</head>
+<body>
+<button onclick="load()">Click</button>
+<div id="data"></div>
+</body>
+</html>
